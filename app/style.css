@@ -1,0 +1,73 @@
+/* Vice Grid editor: dark neon chrome around a bright poster preview. */
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #120a1e; color: #f4eefc; font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.app { display: flex; gap: 20px; align-items: flex-start; padding: 18px; min-height: 100vh; }
+.controls { width: 340px; flex: none; display: flex; flex-direction: column; gap: 14px; }
+.controls h1 {
+  margin: 0; font-size: 34px; letter-spacing: 0.04em; text-transform: uppercase;
+  background: linear-gradient(90deg, #ff9a3d, #ff2e88 55%, #7b5cff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.tagline { margin: 0; color: #c9b8e0; font-size: 13.5px; }
+.group { border: 1px solid #3a2358; border-radius: 12px; padding: 12px; margin: 0; background: #1b1029; }
+.group legend { font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; color: #ffb35c; padding: 0 6px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; margin-top: 8px; }
+label:first-child { margin-top: 0; }
+input[type=text], select {
+  font: inherit; padding: 8px 10px; border: 1px solid #4a2f6e; border-radius: 8px;
+  background: #241640; color: #f4eefc;
+}
+input[type=range] { width: 100%; accent-color: #ff2e88; }
+.hint { margin: 8px 0 0; color: #a68fc4; font-size: 12.5px; font-weight: 400; }
+.tray { display: flex; gap: 8px; flex-wrap: wrap; }
+.tray img {
+  width: 72px; height: 72px; object-fit: cover; border-radius: 8px; cursor: pointer;
+  border: 2px solid transparent; display: block;
+}
+.tray img.is-picked { border-color: #ff9a3d; }
+.tray img:hover { border-color: #ff2e88; }
+.file-btn {
+  display: inline-block; margin-top: 10px; padding: 8px 12px; border-radius: 8px; cursor: pointer;
+  background: #ff2e88; color: #fff; font-weight: 700; text-align: center;
+}
+.file-btn input { display: none; }
+.panel-strip { list-style: none; display: flex; gap: 8px; margin: 0 0 10px; padding: 0; }
+.panel-strip li {
+  flex: 1; min-height: 54px; border-radius: 8px; cursor: grab; display: flex; align-items: center; justify-content: center;
+  background: #2a1845; border: 2px solid #4a2f6e; font-weight: 800; font-size: 13px; color: #ffd9ec;
+}
+.panel-strip li.is-selected { border-color: #ff9a3d; background: #3d2158; }
+.panel-strip li:active { cursor: grabbing; }
+.panel-strip li.dragging { opacity: 0.4; }
+.panel-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+.panel-tools label span { font-weight: 400; color: #c9b8e0; }
+.grade-row, .size-row { display: flex; gap: 8px; margin-top: 10px; }
+.grade-btn, .size-btn {
+  flex: 1; font: inherit; font-weight: 700; padding: 8px 4px; border-radius: 8px; cursor: pointer;
+  background: #241640; color: #e8ddf7; border: 1px solid #4a2f6e;
+}
+.grade-btn.is-active, .size-btn.is-active { background: #ff2e88; border-color: #ff2e88; color: #fff; }
+button { font: inherit; }
+.primary, #exportAll, #reframe {
+  width: 100%; padding: 11px; border: 0; border-radius: 9px; cursor: pointer; font-weight: 800; margin-top: 10px;
+}
+.primary { background: linear-gradient(90deg, #ff9a3d, #ff2e88); color: #fff; font-size: 16px; }
+#exportAll { background: #2a1845; color: #ffd9ec; border: 1px solid #4a2f6e; }
+#reframe { background: #2a1845; color: #ffd9ec; border: 1px solid #4a2f6e; margin-top: 8px; }
+#status { margin: 8px 0 0; color: #8fe3b0; font-size: 13px; min-height: 1.2em; }
+.preview { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 18px; }
+.preview canvas {
+  width: 100%; height: auto; display: block; border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); background: #000; cursor: crosshair;
+}
+.preview-hint { margin: 0; color: #a68fc4; font-size: 13px; text-align: center; }
+body.shot-cover { background: #000; }
+body.shot-cover .controls, body.shot-cover .preview-hint { display: none; }
+body.shot-cover .app { padding: 0; display: block; }
+body.shot-cover .preview { position: static; }
+body.shot-cover canvas { width: 100vw; height: 100vh; object-fit: contain; border-radius: 0; box-shadow: none; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; }
+  .controls { width: 100%; }
+  .preview { position: static; width: 100%; }
+}
